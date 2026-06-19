@@ -5,13 +5,13 @@ import { useListenFor, useReplicant } from 'use-nodecg';
 import styled from '@emotion/styled';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
-registerChannel('Template', 99, Template, {
+registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
 	site: 'GitHub',
-	handle: 'example',
+	handle: 'Nevets10',
 });
 
-function Template(props: ChannelProps) {
+function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
 
 	useListenFor('donation', (donation: FormattedDonation) => {
