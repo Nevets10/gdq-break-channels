@@ -38,7 +38,12 @@ const Container = styled.div`
 `;
 
 const TotalEl = styled.div`
-	font-family: gdqpixel;
+	@font-face {
+		font-family: 'darkSoulsFont';
+		src: url('./fonts/EBGaramond-Regular.ttf');
+	}
+
+	font-family: darkSoulsFont;
 	font-size: 46px;
 	color: white;
 
