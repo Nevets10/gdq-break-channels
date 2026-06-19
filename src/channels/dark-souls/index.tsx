@@ -5,6 +5,8 @@ import { useListenFor, useReplicant } from 'use-nodecg';
 import styled from '@emotion/styled';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
+import bRoll from './videos/b-roll.webm';
+
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
 	site: 'GitHub',
@@ -22,6 +24,7 @@ function DarkSouls(props: ChannelProps) {
 
 	return (
 		<Container>
+			<Video controls={false} autoPlay={true} loop={true} src={bRoll}></Video>
 			<TotalEl>
 				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
 			</TotalEl>
@@ -52,4 +55,12 @@ const TotalEl = styled.div`
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+`;
+
+const Video = styled.video`
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
 `;
