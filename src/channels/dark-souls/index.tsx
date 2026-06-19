@@ -5,8 +5,16 @@ import { useListenFor, useReplicant } from 'use-nodecg';
 import styled from '@emotion/styled';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
+// import videos
 import bRoll from './videos/b-roll.webm';
 import mainChar from './videos/main-char.webm';
+import dad from './videos/dad.webm';
+import kirk from './videos/kirk.webm';
+import lautrec from './videos/lautrec.webm';
+import logan from './videos/logan.webm';
+import mindblank from './videos/mindblank.webm';
+import siegmeyer from './videos/siegmeyer.webm';
+import solaire from './videos/solaire.webm';
 
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
