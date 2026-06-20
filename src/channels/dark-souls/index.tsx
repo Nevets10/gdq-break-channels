@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import type { FormattedDonation, Total, TwitchSubscription } from '@gdq/types/tracker';
 import { ChannelProps, registerChannel } from '../channels';
-
 import { useListenFor, useReplicant } from 'use-nodecg';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
@@ -74,9 +73,11 @@ registerChannel('Dark Souls', 1337, DarkSouls, {
 function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
 
+	// subscription tracking
 	const [subCount, setSubCount] = useState<number>(0);
 	const currentSubCount = useRef<number>(0);
 
+	// video playback tracking
 	const [cameo, setCameo] = useState<string>('');
 	const cameoQueue = useRef<string[]>([]);
 
