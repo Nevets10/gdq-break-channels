@@ -29,6 +29,7 @@ import ninja2 from './videos/ninja2.webm';
 import healthBar from './img/health-bar.png';
 import items from './img/items.png';
 import souls from './img/souls.png';
+import transHumanity from './img/trans-humanity.png';
 import num0 from './img/numbers/0.png';
 import num1 from './img/numbers/1.png';
 import num2 from './img/numbers/2.png';
@@ -115,7 +116,8 @@ function DarkSouls(props: ChannelProps) {
 					$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
 				</TotalEl>
 			</TotalWrapper>
-			<HealthBar src={healthBar}></HealthBar>
+			<HealthBar src={healthBar} />
+			<TransHumanity src={transHumanity} />
 			<HumanityCount>
 				<HumanityNum src={humanityNums[getHumanityTens()]} />
 				<HumanityNum src={humanityNums[getHumanityOnes()]} />
@@ -162,6 +164,14 @@ const HealthBar = styled.img`
 	position: absolute;
 	padding: 0;
 	margin: 10px;
+`;
+
+const TransHumanity = styled.img`
+	position: absolute;
+	padding: 0;
+	margin-left: 90px;
+	margin-top: 65px;
+	width: 15px;
 `;
 
 const Items = styled.img`
