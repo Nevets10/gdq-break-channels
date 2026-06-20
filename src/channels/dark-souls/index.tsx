@@ -29,6 +29,18 @@ import ninja2 from './videos/ninja2.webm';
 import healthBar from './img/health-bar.png';
 import items from './img/items.png';
 import souls from './img/souls.png';
+import num0 from './img/numbers/0.png';
+import num1 from './img/numbers/1.png';
+import num2 from './img/numbers/2.png';
+import num3 from './img/numbers/3.png';
+import num4 from './img/numbers/4.png';
+import num5 from './img/numbers/5.png';
+import num6 from './img/numbers/6.png';
+import num7 from './img/numbers/7.png';
+import num8 from './img/numbers/8.png';
+import num9 from './img/numbers/9.png';
+
+const humanityNums: string[] = [num0, num1, num2, num3, num4, num5, num6, num7, num8, num9];
 
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
@@ -80,6 +92,10 @@ function DarkSouls(props: ChannelProps) {
 				</TotalEl>
 			</TotalWrapper>
 			<HealthBar src={healthBar}></HealthBar>
+			<HumanityCount>
+				<HumanityNum src={humanityNums[0]} />
+				<HumanityNum src={humanityNums[0]} />
+			</HumanityCount>
 			<Items src={items}></Items>
 		</Container>
 	);
@@ -139,4 +155,15 @@ const TotalWrapper = styled.div`
 	position: absolute;
 	top: 250px;
 	margin-left: 800px;
+`;
+
+const HumanityCount = styled.div`
+	position: absolute;
+	margin-top: 13px;
+	margin-left: 35px;
+`;
+
+const HumanityNum = styled.img`
+	width: 25px;
+	margin-right: -6px;
 `;
