@@ -41,6 +41,20 @@ import num8 from './img/numbers/8.png';
 import num9 from './img/numbers/9.png';
 
 const humanityNums: string[] = [num0, num1, num2, num3, num4, num5, num6, num7, num8, num9];
+const cameos: string[] = [
+	dad,
+	kirk,
+	lautrec,
+	logan,
+	mindblank,
+	siegmeyer,
+	solaire,
+	havel,
+	chester,
+	artorias,
+	ninja1,
+	ninja2,
+];
 
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
@@ -50,24 +64,12 @@ registerChannel('Dark Souls', 1337, DarkSouls, {
 
 function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
+
 	const [subCount, setSubCount] = useState<number>(0);
 	const currentSubCount = useRef<number>(0);
+
 	const [cameo, setCameo] = useState<string>('');
 	const cameoQueue = useRef<string[]>([]);
-	const cameos: string[] = [
-		dad,
-		kirk,
-		lautrec,
-		logan,
-		mindblank,
-		siegmeyer,
-		solaire,
-		havel,
-		chester,
-		artorias,
-		ninja1,
-		ninja2,
-	];
 
 	useListenFor('donation', (donation: FormattedDonation) => {
 		// Add random character to the queue after filtering the last one currently in the queue
