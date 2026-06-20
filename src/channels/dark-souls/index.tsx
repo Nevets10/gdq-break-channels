@@ -91,11 +91,13 @@ function DarkSouls(props: ChannelProps) {
 	}
 
 	function getHumanityTens(): number {
+		if (subCount > 99) return 9;
 		if (subCount < 10) return 0;
 		return +subCount.toString()[0];
 	}
 
 	function getHumanityOnes(): number {
+		if (subCount > 99) return 9;
 		if (subCount >= 10) {
 			return +subCount.toString()[1];
 		} else {
