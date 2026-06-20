@@ -19,6 +19,11 @@ import logan from './videos/logan.webm';
 import mindblank from './videos/mindblank.webm';
 import siegmeyer from './videos/siegmeyer.webm';
 import solaire from './videos/solaire.webm';
+import havel from './videos/havel.webm';
+import chester from './videos/chester.webm';
+import artorias from './videos/artorias.webm';
+import ninja1 from './videos/ninja1.webm';
+import ninja2 from './videos/ninja2.webm';
 
 // import images
 import healthBar from './img/heath-bar.png';
@@ -35,7 +40,20 @@ function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
 	const [cameo, setCameo] = useState<string>('');
 	const cameoQueue = useRef<string[]>([]);
-	const cameos: string[] = [dad, kirk, lautrec, logan, mindblank, siegmeyer, solaire];
+	const cameos: string[] = [
+		dad,
+		kirk,
+		lautrec,
+		logan,
+		mindblank,
+		siegmeyer,
+		solaire,
+		havel,
+		chester,
+		artorias,
+		ninja1,
+		ninja2,
+	];
 
 	useListenFor('donation', (donation: FormattedDonation) => {
 		// Add random character to the queue after filtering the last one currently in the queue
