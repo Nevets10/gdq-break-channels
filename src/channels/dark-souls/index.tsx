@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import type { FormattedDonation, Total } from '@gdq/types/tracker';
 import { ChannelProps, registerChannel } from '../channels';
-import { useRef } from 'react';
 
 import { useListenFor, useReplicant } from 'use-nodecg';
 import styled from '@emotion/styled';
@@ -25,18 +25,17 @@ registerChannel('Dark Souls', 1337, DarkSouls, {
 
 function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
-	const cameoRef = useRef<HTMLDivElement>(null);
+	const [cameoState, setCameoState] = useState<string>('');
+	const cameos: string[] = [dad, kirk, lautrec, logan, mindblank, siegmeyer, solaire];
 
 	useListenFor('donation', (donation: FormattedDonation) => {
-		/**
-		 * Respond to a donation.
-		 */
+		setCameoState(cameos[Math.floor(Math.random() * cameos.length)]);
 	});
 
 	return (
 		<Container>
 			<Video controls={false} autoPlay={true} loop={true} src={bRoll}></Video>
-			<CameoWrapper ref={cameoRef}></CameoWrapper>
+			<Video controls={false} autoPlay={true} src={cameoState}></Video>
 			<Video controls={false} autoPlay={true} loop={true} src={mainChar}></Video>
 			<TotalEl>
 				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
@@ -71,14 +70,6 @@ const TotalEl = styled.div`
 `;
 
 const Video = styled.video`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-`;
-
-const CameoWrapper = styled.div`
 	position: absolute;
 	width: 100%;
 	height: 100%;
