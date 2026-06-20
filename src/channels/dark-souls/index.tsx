@@ -20,6 +20,7 @@ import solaire from './videos/solaire.webm';
 // import images
 import healthBar from './img/heath-bar.png';
 import items from './img/items.png';
+import souls from './img/souls.png';
 
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
@@ -52,9 +53,11 @@ function DarkSouls(props: ChannelProps) {
 			<Video controls={false} autoPlay={true} loop={true} src={bRoll}></Video>
 			<Video controls={false} autoPlay={true} src={cameo} onEnded={handleOnEnded}></Video>
 			<Video controls={false} autoPlay={true} loop={true} src={mainChar}></Video>
-			<TotalEl>
-				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
-			</TotalEl>
+			<TotalWrapper>
+				<TotalEl>
+					$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
+				</TotalEl>
+			</TotalWrapper>
 			<HealthBar src={healthBar}></HealthBar>
 			<Items src={items}></Items>
 		</Container>
@@ -78,9 +81,9 @@ const TotalEl = styled.div`
 	font-family: darkSoulsFont;
 	font-size: 46px;
 	color: white;
-
+	text-align: right;
 	position: absolute;
-
+	width: 80%;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -105,4 +108,14 @@ const Items = styled.img`
 	top: 165px;
 	padding: 0;
 	margin-left: 25px;
+`;
+
+const TotalWrapper = styled.div`
+	background-image: url('${souls}');
+	width: 300px;
+	height: 67px;
+	text-align: right;
+	position: absolute;
+	top: 250px;
+	margin-left: 800px;
 `;
