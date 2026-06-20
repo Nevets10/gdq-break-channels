@@ -92,8 +92,6 @@ function DarkSouls(props: ChannelProps) {
 	useListenFor('subscription', (subscription: TwitchSubscription) => {
 		currentSubCount.current += 1;
 		setSubCount(currentSubCount.current);
-
-		console.log(subscription);
 	});
 
 	function handleOnEnded(): void {
