@@ -11,7 +11,7 @@ import {
 	TotalEl,
 	Video,
 	HealthBar,
-	TransHumanity,
+	//TransHumanity,
 	Items,
 	TotalWrapper,
 	HumanityCount,
@@ -37,7 +37,7 @@ import ninja2 from './videos/ninja2.webm';
 // images
 import healthBar from './img/health-bar.png';
 import items from './img/items.png';
-import transHumanity from './img/trans-humanity.png';
+//import transHumanity from './img/trans-humanity.png';
 import num0 from './img/numbers/0.png';
 import num1 from './img/numbers/1.png';
 import num2 from './img/numbers/2.png';
@@ -92,6 +92,8 @@ function DarkSouls(props: ChannelProps) {
 	useListenFor('subscription', (subscription: TwitchSubscription) => {
 		currentSubCount.current += 1;
 		setSubCount(currentSubCount.current);
+
+		console.log(subscription);
 	});
 
 	function handleOnEnded(): void {
@@ -125,7 +127,7 @@ function DarkSouls(props: ChannelProps) {
 				</TotalEl>
 			</TotalWrapper>
 			<HealthBar src={healthBar} />
-			<TransHumanity src={transHumanity} />
+			{/* <TransHumanity src={transHumanity} /> */}
 			<HumanityCount>
 				<HumanityNum src={humanityNums[getHumanityTens()]} />
 				<HumanityNum src={humanityNums[getHumanityOnes()]} />
