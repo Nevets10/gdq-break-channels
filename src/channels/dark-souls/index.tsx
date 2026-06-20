@@ -6,6 +6,9 @@ import { useListenFor, useReplicant } from 'use-nodecg';
 import styled from '@emotion/styled';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
+//import font
+import dsFont from './fonts/EBGaramond-Regular.ttf';
+
 // import videos
 import bRoll from './videos/b-roll.webm';
 import mainChar from './videos/main-char.webm';
@@ -75,7 +78,7 @@ const Container = styled.div`
 const TotalEl = styled.div`
 	@font-face {
 		font-family: 'darkSoulsFont';
-		src: url('./fonts/EBGaramond-Regular.ttf');
+		src: url('${dsFont}');
 	}
 
 	font-family: darkSoulsFont;
