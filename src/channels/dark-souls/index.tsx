@@ -3,11 +3,20 @@ import type { FormattedDonation, Total, TwitchSubscription } from '@gdq/types/tr
 import { ChannelProps, registerChannel } from '../channels';
 
 import { useListenFor, useReplicant } from 'use-nodecg';
-import styled from '@emotion/styled';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
-// font
-import dsFont from './fonts/EBGaramond-Regular.ttf';
+// components
+import {
+	Container,
+	TotalEl,
+	Video,
+	HealthBar,
+	TransHumanity,
+	Items,
+	TotalWrapper,
+	HumanityCount,
+	HumanityNum,
+} from './components';
 
 // videos
 import bRoll from './videos/b-roll.webm';
@@ -28,7 +37,6 @@ import ninja2 from './videos/ninja2.webm';
 // images
 import healthBar from './img/health-bar.png';
 import items from './img/items.png';
-import souls from './img/souls.png';
 import transHumanity from './img/trans-humanity.png';
 import num0 from './img/numbers/0.png';
 import num1 from './img/numbers/1.png';
@@ -126,78 +134,3 @@ function DarkSouls(props: ChannelProps) {
 		</Container>
 	);
 }
-
-const Container = styled.div`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-`;
-
-const TotalEl = styled.div`
-	@font-face {
-		font-family: 'darkSoulsFont';
-		src: url('${dsFont}');
-	}
-
-	font-family: darkSoulsFont;
-	font-size: 46px;
-	color: white;
-	text-align: right;
-	position: absolute;
-	width: 80%;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-`;
-
-const Video = styled.video`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-`;
-
-const HealthBar = styled.img`
-	position: absolute;
-	padding: 0;
-	margin: 10px;
-`;
-
-const TransHumanity = styled.img`
-	position: absolute;
-	padding: 0;
-	margin-left: 90px;
-	margin-top: 65px;
-	width: 15px;
-`;
-
-const Items = styled.img`
-	position: absolute;
-	top: 165px;
-	padding: 0;
-	margin-left: 25px;
-`;
-
-const TotalWrapper = styled.div`
-	background-image: url('${souls}');
-	width: 300px;
-	height: 67px;
-	text-align: right;
-	position: absolute;
-	top: 250px;
-	margin-left: 800px;
-`;
-
-const HumanityCount = styled.div`
-	position: absolute;
-	margin-top: 13px;
-	margin-left: 35px;
-`;
-
-const HumanityNum = styled.img`
-	width: 25px;
-	margin-right: -6px;
-`;
