@@ -6,10 +6,10 @@ import { useListenFor, useReplicant } from 'use-nodecg';
 import styled from '@emotion/styled';
 import TweenNumber from '@gdq/lib/components/TweenNumber';
 
-//import font
+// font
 import dsFont from './fonts/EBGaramond-Regular.ttf';
 
-// import videos
+// videos
 import bRoll from './videos/b-roll.webm';
 import mainChar from './videos/main-char.webm';
 import dad from './videos/dad.webm';
@@ -25,7 +25,7 @@ import artorias from './videos/artorias.webm';
 import ninja1 from './videos/ninja1.webm';
 import ninja2 from './videos/ninja2.webm';
 
-// import images
+// images
 import healthBar from './img/health-bar.png';
 import items from './img/items.png';
 import souls from './img/souls.png';
