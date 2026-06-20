@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { FormattedDonation, Total } from '@gdq/types/tracker';
 import { ChannelProps, registerChannel } from '../channels';
 
@@ -25,26 +25,28 @@ registerChannel('Dark Souls', 1337, DarkSouls, {
 
 function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
-	const hardLockRep = nodecg.Replicant<boolean>('break-screen-lock', {
-		defaultValue: false,
-	});
-	const [cameoState, setCameoState] = useState<string>('');
+	const [cameo, setCameo] = useState<string>('');
+	const cameoQueue = useRef<string[]>([]);
 	const cameos: string[] = [dad, kirk, lautrec, logan, mindblank, siegmeyer, solaire];
 
 	useListenFor('donation', (donation: FormattedDonation) => {
-		if (hardLockRep.value) return;
-		setCameoState(cameos[Math.floor(Math.random() * cameos.length)]);
+		// Add random character to the queue after filtering the last one currently in the queue
+		// The video will not play the same character back-to-back
+		const filteredCameos = cameos.filter((cameo) => cameo !== cameoQueue.current[cameoQueue.current.length - 1]);
+		const newCameo = filteredCameos[Math.floor(Math.random() * filteredCameos.length)];
+		cameoQueue.current.push(newCameo);
+		setCameo(cameoQueue.current[0]);
 	});
+
+	function handleOnEnded(): void {
+		cameoQueue.current.shift();
+		setCameo(cameoQueue.current[0]);
+	}
 
 	return (
 		<Container>
 			<Video controls={false} autoPlay={true} loop={true} src={bRoll}></Video>
-			<Video
-				controls={false}
-				autoPlay={true}
-				src={cameoState}
-				onPlay={() => (hardLockRep.value = true)}
-				onEnded={() => (hardLockRep.value = false)}></Video>
+			<Video controls={false} autoPlay={true} src={cameo} onEnded={handleOnEnded}></Video>
 			<Video controls={false} autoPlay={true} loop={true} src={mainChar}></Video>
 			<TotalEl>
 				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
