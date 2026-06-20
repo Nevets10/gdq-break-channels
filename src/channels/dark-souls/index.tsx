@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import type { FormattedDonation, Total } from '@gdq/types/tracker';
+import type { FormattedDonation, Total, TwitchSubscription } from '@gdq/types/tracker';
 import { ChannelProps, registerChannel } from '../channels';
 
 import { useListenFor, useReplicant } from 'use-nodecg';
@@ -50,6 +50,8 @@ registerChannel('Dark Souls', 1337, DarkSouls, {
 
 function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
+	const [subCount, setSubCount] = useState<number>(0);
+	const currentSubCount = useRef<number>(0);
 	const [cameo, setCameo] = useState<string>('');
 	const cameoQueue = useRef<string[]>([]);
 	const cameos: string[] = [
@@ -76,9 +78,27 @@ function DarkSouls(props: ChannelProps) {
 		setCameo(cameoQueue.current[0]);
 	});
 
+	useListenFor('subscription', (subscription: TwitchSubscription) => {
+		currentSubCount.current += 1;
+		setSubCount(currentSubCount.current);
+	});
+
 	function handleOnEnded(): void {
 		cameoQueue.current.shift();
 		setCameo(cameoQueue.current[0]);
+	}
+
+	function getHumanityTens(): number {
+		if (subCount < 10) return 0;
+		return +subCount.toString()[0];
+	}
+
+	function getHumanityOnes(): number {
+		if (subCount >= 10) {
+			return +subCount.toString()[1];
+		} else {
+			return +subCount.toString()[0];
+		}
 	}
 
 	return (
@@ -93,8 +113,8 @@ function DarkSouls(props: ChannelProps) {
 			</TotalWrapper>
 			<HealthBar src={healthBar}></HealthBar>
 			<HumanityCount>
-				<HumanityNum src={humanityNums[0]} />
-				<HumanityNum src={humanityNums[0]} />
+				<HumanityNum src={humanityNums[getHumanityTens()]} />
+				<HumanityNum src={humanityNums[getHumanityOnes()]} />
 			</HumanityCount>
 			<Items src={items}></Items>
 		</Container>
