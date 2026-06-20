@@ -26,7 +26,7 @@ import ninja1 from './videos/ninja1.webm';
 import ninja2 from './videos/ninja2.webm';
 
 // import images
-import healthBar from './img/heath-bar.png';
+import healthBar from './img/health-bar.png';
 import items from './img/items.png';
 import souls from './img/souls.png';
 
