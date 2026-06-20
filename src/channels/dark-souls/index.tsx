@@ -17,6 +17,9 @@ import mindblank from './videos/mindblank.webm';
 import siegmeyer from './videos/siegmeyer.webm';
 import solaire from './videos/solaire.webm';
 
+// import images
+import healthBar from './img/heath-bar.png';
+
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
 	site: 'GitHub',
@@ -51,6 +54,7 @@ function DarkSouls(props: ChannelProps) {
 			<TotalEl>
 				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
 			</TotalEl>
+			<HealthBar src={healthBar}></HealthBar>
 		</Container>
 	);
 }
@@ -86,4 +90,10 @@ const Video = styled.video`
 	height: 100%;
 	padding: 0;
 	margin: 0;
+`;
+
+const HealthBar = styled.img`
+	position: absolute;
+	padding: 0;
+	margin: 10px;
 `;
