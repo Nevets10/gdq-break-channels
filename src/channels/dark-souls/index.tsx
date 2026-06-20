@@ -25,17 +25,26 @@ registerChannel('Dark Souls', 1337, DarkSouls, {
 
 function DarkSouls(props: ChannelProps) {
 	const [total] = useReplicant<Total | null>('total', null);
+	const hardLockRep = nodecg.Replicant<boolean>('break-screen-lock', {
+		defaultValue: false,
+	});
 	const [cameoState, setCameoState] = useState<string>('');
 	const cameos: string[] = [dad, kirk, lautrec, logan, mindblank, siegmeyer, solaire];
 
 	useListenFor('donation', (donation: FormattedDonation) => {
+		if (hardLockRep.value) return;
 		setCameoState(cameos[Math.floor(Math.random() * cameos.length)]);
 	});
 
 	return (
 		<Container>
 			<Video controls={false} autoPlay={true} loop={true} src={bRoll}></Video>
-			<Video controls={false} autoPlay={true} src={cameoState}></Video>
+			<Video
+				controls={false}
+				autoPlay={true}
+				src={cameoState}
+				onPlay={() => (hardLockRep.value = true)}
+				onEnded={() => (hardLockRep.value = false)}></Video>
 			<Video controls={false} autoPlay={true} loop={true} src={mainChar}></Video>
 			<TotalEl>
 				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
