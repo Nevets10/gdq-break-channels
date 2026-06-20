@@ -19,6 +19,7 @@ import solaire from './videos/solaire.webm';
 
 // import images
 import healthBar from './img/heath-bar.png';
+import items from './img/items.png';
 
 registerChannel('Dark Souls', 1337, DarkSouls, {
 	position: 'bottomLeft',
@@ -55,6 +56,7 @@ function DarkSouls(props: ChannelProps) {
 				$<TweenNumber value={Math.floor(total?.raw ?? 0)} />
 			</TotalEl>
 			<HealthBar src={healthBar}></HealthBar>
+			<Items src={items}></Items>
 		</Container>
 	);
 }
@@ -96,4 +98,11 @@ const HealthBar = styled.img`
 	position: absolute;
 	padding: 0;
 	margin: 10px;
+`;
+
+const Items = styled.img`
+	position: absolute;
+	top: 165px;
+	padding: 0;
+	margin-left: 25px;
 `;
